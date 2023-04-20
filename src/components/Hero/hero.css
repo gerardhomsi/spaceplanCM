@@ -1,0 +1,28 @@
+.hero {
+    position: relative;
+    height: 100vh;
+    background-color: rgba(151, 142, 142, 0.486);
+  }
+  
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.65;
+    z-index: -1;
+  }
+
+.hero p {
+    font-size: 20px;
+    padding: 20px;
+    color: #041c68;
+    font-weight: bolder;
+    font-family: 'Roboto';
+    word-wrap: none;
+}
