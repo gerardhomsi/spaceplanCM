@@ -1,13 +1,16 @@
 import React from 'react'
 import Navbar from '../components/Navbar/Navbar'
-import Hero from '../components/Hero/Hero'
+import Slider from '../components/Slider/Slider.jsx'
+
 
 const Home = () => {
   return (
+
     <div>
-        <Navbar />
-        <Hero />
+      <Navbar />
+      <Slider />
     </div>
+
   )
 }
 

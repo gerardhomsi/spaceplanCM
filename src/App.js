@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import Animation from "./Animation/Animation";
 import Home from "./pages/Home";
+import Services from "./pages/Services";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
@@ -15,7 +17,8 @@ const App = () => {
       <Animation onAnimationComplete={handleAnimationComplete} />
       {animationComplete && (
         <>
-          <Home />
+          <Services />
+          <Footer />
         </>
       )}
     </>
