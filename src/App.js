@@ -8,6 +8,8 @@ import Projects from './pages/Projects'
 import About from './pages/About'
 import Services from './pages/Services'
 import Contact from './pages/Contact'
+import Admin from "./pages/Admin";
+import Gallery from "./pages/Gallery";
 
 const App = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
@@ -22,6 +24,8 @@ const App = () => {
     { path: '/projects', element: <Projects /> },
     { path: '/about', element: <About /> },
     { path: '/contact', element: <Contact /> },
+    { path: '/gallery', element: <Gallery /> },
+    { path: '/admin', element: <Admin /> },
   ]
 
   return (
