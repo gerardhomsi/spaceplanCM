@@ -1,8 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Grid } from '@material-ui/core';
-import Navbar from '../components/Navbar/Navbar';
 import servicesBG from '../images/servicesBG.jpg'
+import Navbar from '../components/Navbar/Navbar'
+
 const useStyles = makeStyles({
   section: {
     color: 'rgb(8, 27, 56)',
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
     fontWeight: 'bold',
     marginBottom: 10,
     marginTop : 20,
-    fontSize: '4rem',
+    fontSize: '3rem',
     display: 'flex',
     justifyContent: 'center',
     color: 'rgb(3, 41, 102)'
@@ -37,31 +38,31 @@ const useStyles = makeStyles({
     fontWeight: 'bold',
     marginTop: 20,
     marginBottom: 10,
-    fontSize: '3rem',
+    fontSize: '2rem',
     marginLeft: -20,
 
   },
   list: {
     paddingLeft: 30,
-    fontSize: '2rem',
+    fontSize: '1rem',
     paddingTop: 10,
     fontWeight: '500',
     paddingBottom: 10,
   },
   typo: {
-    fontSize: '1.7rem'
+    fontSize: '1.2rem'
   },
   gridcs: {
     display: 'Grid'
-  }
+  },
 });
 
 const Services = () => {
   const classes = useStyles();
 
   return (
-    <div>
-    <Navbar />
+    <>
+        <Navbar />
     <section className={classes.section}>
       <Typography variant="h4" className={classes.title}>
         Pre-Construction Services
@@ -173,7 +174,7 @@ const Services = () => {
   </Typography>
   </div>
 </section>
-</div>
+</>
   )};
 
   export default Services;

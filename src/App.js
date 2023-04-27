@@ -1,9 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import Animation from "./Animation/Animation";
-import Home from "./pages/Home";
-import Services from "./pages/Services";
-import Footer from "./components/Footer/Footer";
+// import { Home, Projects, Services, About, Contact } from './pages/index.js'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Projects from './pages/Projects'
+import About from './pages/About'
+import Services from './pages/Services'
+import Contact from './pages/Contact'
 
 const App = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
@@ -12,16 +16,25 @@ const App = () => {
     setAnimationComplete(true);
   }
 
+  const routes = [
+    { path: '/', element: <Home /> },
+    { path: '/services', element: <Services /> },
+    { path: '/projects', element: <Projects /> },
+    { path: '/about', element: <About /> },
+    { path: '/contact', element: <Contact /> },
+  ]
+
   return (
-    <>
-      <Animation onAnimationComplete={handleAnimationComplete} />
+    <BrowserRouter>
+    <Animation onAnimationComplete={handleAnimationComplete} />
       {animationComplete && (
-        <>
-          <Services />
-          <Footer />
-        </>
+        <Routes>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
+        </Routes>
       )}
-    </>
+    </BrowserRouter>
   );
 };
 

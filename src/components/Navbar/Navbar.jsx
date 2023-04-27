@@ -1,38 +1,134 @@
-import React, { useState }from 'react'
-import './navbar.css'
-import logo from '../../images/logo.png'
+import * as React from 'react';
+import { Link } from 'react-router-dom'
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import navLogo from '../../images/logo.png'
 
-const Navbar = () => {
-  const [active, setActive] = useState("nav__menu")
-  const [toggleIcon, setToggleIcon] = useState('nav__toggler')
+const pages = [
+  { label: 'Home', link: '/' },
+  { label: 'Services', link: '/services' },
+  { label: 'Projects', link: '/projects' },
+  { label: 'About', link: '/about' },
+  { label: 'Contact', link: '/contact' },
+];
 
-  const navToggle = () => {
-    active === 'nav__menu' ? setActive ('nav__menu nav__active') : setActive('nav__menu');
+function ResponsiveAppBar() {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-    // TogglerIcon
-    toggleIcon === 'nav__toggler'
-    ? setToggleIcon('nav__toggler toggle')
-    : setToggleIcon('nav__toggler')
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
 
-  }
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
   return (
-    <nav className="nav">
-      <img src={logo} alt='logo' />
-      <a href="/" className="nav__brand">SpacePlanCM</a>
-      <ul className={active}>
-        <li className="nav__item"><a href="/" className="nav__link">Home</a></li>
-        <li className="nav__item"><a href="/services" className="nav__link">Services</a></li>
-        <li className="nav__item"><a href="/projects" className="nav__link">Projects</a></li>
-        <li className="nav__item"><a href="/About" className="nav__link">About</a></li>
-        <li className="nav__item"><a href="/Contact" className="nav__link">Contact</a></li>
-      </ul>
-      <div onClick={navToggle} className={toggleIcon}>
-        <div className="line1"></div>
-        <div className="line2"></div>
-        <div className="line3"></div>
-      </div>
-    </nav>
-  )
-}
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
+          <img src={navLogo} alt='logo' style= {{width:70, height:60,marginRight:10}} />
+          </Box>
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            SpacePlanCM
+          </Typography>
 
-export default Navbar
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+                    <Typography
+                    textAlign="center"
+                    component={Link}
+                    to={page.link}
+                    >{page.label}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
+          <img src={navLogo} alt='Logo' style={{width:70, height:60,mr:2, backgroundColor: 'inherit'}}/>
+          </Box>
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            SpacePlanCM
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Link to={page.link} key={page.label} onClick={handleCloseNavMenu} style={{ textDecoration: 'none' }}>
+              <Button sx={{ my: 2, color: 'white', display: 'block',}}>
+                {page.label}
+              </Button>
+            </Link>
+            ))}
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+}
+export default ResponsiveAppBar;

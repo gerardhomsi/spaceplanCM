@@ -15,7 +15,13 @@ const useStyles = makeStyles({
     width: '100%',
     height: 400,
     objectFit: 'fill',
+
   },
+  carousel: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 });
 
 const Slider = () => {
@@ -28,6 +34,7 @@ const Slider = () => {
 
   return (
     <Carousel
+    className={classes.carousel}
       autoPlay={true}
       animation="slide"
       indicators={false}
