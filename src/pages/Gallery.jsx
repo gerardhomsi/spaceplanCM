@@ -1,72 +1,82 @@
-import { useState } from 'react';
-import { GridList, GridListTile, GridListTileBar, IconButton, Modal } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { Close as CloseIcon } from '@material-ui/icons';
-import Navbar from '../components/Navbar/Navbar'
+import { useState } from "react";
+import {
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
+  IconButton,
+  Modal,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Close as CloseIcon } from "@material-ui/icons";
+import Navbar from "../components/Navbar/Navbar";
 
 const useStyles = makeStyles((theme) => ({
   gridList: {
-    width: '100%',
+    width: "100%",
     margin: 0,
     padding: theme.spacing(1),
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       padding: theme.spacing(2),
     },
   },
   gridListTile: {
-    cursor: 'pointer',
+    cursor: "pointer",
   },
   iconButton: {
-    color: 'rgba(255, 255, 255, 0.54)',
+    color: "rgba(255, 255, 255, 0.54)",
   },
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   modalContent: {
-    maxWidth: '100%',
-    maxHeight: '100%',
+    maxWidth: "100%",
+    maxHeight: "100%",
     margin: theme.spacing(2),
     backgroundColor: theme.palette.background.paper,
-    outline: 'none',
-    overflow: 'hidden',
-    [theme.breakpoints.up('sm')]: {
+    outline: "none",
+    overflow: "hidden",
+    [theme.breakpoints.up("sm")]: {
       margin: theme.spacing(4),
     },
   },
   image: {
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-    margin: 'auto',
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    margin: "auto",
   },
 }));
 
 const Gallery = ({ photos }) => {
-
-    photos = [
-        {id: '1',
-        url: "https://source.unsplash.com/random/900x500/?img=1",
-        title: 'one'
+  photos = [
+    {
+      id: "1",
+      url: "https://source.unsplash.com/random/900x500/?img=1",
+      title: "one",
     },
-        {id: '2',
-        url: "https://source.unsplash.com/random/900x500/?img=2",
-        title: 'two'
+    {
+      id: "2",
+      url: "https://source.unsplash.com/random/900x500/?img=2",
+      title: "two",
     },
-        {id: '3',
-        url: "https://source.unsplash.com/random/900x500/?img=3",
-        title: 'three'
+    {
+      id: "3",
+      url: "https://source.unsplash.com/random/900x500/?img=3",
+      title: "three",
     },
-        {id: '4',
-        url: "https://source.unsplash.com/random/900x500/?img=4",
-        title: 'four'
+    {
+      id: "4",
+      url: "https://source.unsplash.com/random/900x500/?img=4",
+      title: "four",
     },
-        {id: '5',
-        url: "https://source.unsplash.com/random/900x500/?img=5",
-        title: 'five'
+    {
+      id: "5",
+      url: "https://source.unsplash.com/random/900x500/?img=5",
+      title: "five",
     },
-    ]
+  ];
 
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -98,25 +108,33 @@ const Gallery = ({ photos }) => {
 
   const [cols, setCols] = useState(getGridListCols);
 
-  window.addEventListener('resize', handleResize);
+  window.addEventListener("resize", handleResize);
 
   return (
     <>
-    <Navbar/>
-      <GridList className={classes.gridList} cols={cols} cellHeight={200}>
+      <Navbar />
+      <ImageList className={classes.gridList} cols={cols} rowHeight={200}>
         {photos.map((photo) => (
-          <GridListTile key={photo.id} className={classes.gridListTile} onClick={() => handleOpenModal(photo)}>
+          <ImageListItem
+            key={photo.id}
+            className={classes.gridListTile}
+            onClick={() => handleOpenModal(photo)}
+          >
             <img src={photo.url} alt={photo.title} />
-            <GridListTileBar title={photo.title} />
-          </GridListTile>
+            <ImageListItemBar title={photo.title} />
+          </ImageListItem>
         ))}
-      </GridList>
+      </ImageList>
       <Modal open={open} onClose={handleCloseModal} className={classes.modal}>
         <div className={classes.modalContent}>
           <IconButton className={classes.iconButton} onClick={handleCloseModal}>
             <CloseIcon />
           </IconButton>
-          <img src={selectedPhoto?.url} alt={selectedPhoto?.title} className={classes.image} />
+          <img
+            src={selectedPhoto?.url}
+            alt={selectedPhoto?.title}
+            className={classes.image}
+          />
         </div>
       </Modal>
     </>
